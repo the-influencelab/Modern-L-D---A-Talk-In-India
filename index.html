@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Modern L&D In A Digital Age | Kay Littlehales & Keerthika Chellappa</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #1E4A1A;
+    --mint: #6ECFB0;
+    --yellow: #FFE600;
+    --pink: #ED93B1;
+    --bg: #F3F7F4;
+    --text: #1a2e1a;
+    --light-text: #4a6349;
+    --white: #ffffff;
+    --border: #d4e8d4;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    background: var(--green);
+    padding: 3rem 2rem 2.5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 280px; height: 280px;
+    background: var(--mint);
+    opacity: 0.09;
+    border-radius: 50%;
+  }
+  .header::after {
+    content: '';
+    position: absolute;
+    bottom: -60px; left: -60px;
+    width: 200px; height: 200px;
+    background: var(--pink);
+    opacity: 0.09;
+    border-radius: 50%;
+  }
+  .logo-line {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    color: var(--mint);
+    text-transform: uppercase;
+    margin-bottom: 1.2rem;
+  }
+  .header h1 {
+    font-family: 'Lora', serif;
+    font-size: clamp(1.8rem, 4.5vw, 2.8rem);
+    font-weight: 600;
+    color: var(--white);
+    line-height: 1.2;
+    max-width: 700px;
+    margin: 0 auto 0.8rem;
+  }
+  .header h1 em {
+    font-style: italic;
+    color: var(--yellow);
+  }
+  .header-sub {
+    font-size: 0.95rem;
+    font-weight: 300;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 1.8rem;
+  }
+  .header-cta {
+    display: inline-block;
+    background: var(--yellow);
+    color: var(--green);
+    font-weight: 600;
+    font-size: 0.88rem;
+    padding: 0.75rem 1.8rem;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+  .header-cta:hover { opacity: 0.88; }
+
+  /* ── NAV TABS ── */
+  .nav-tabs {
+    background: var(--white);
+    border-bottom: 2px solid var(--border);
+    display: flex;
+    overflow-x: auto;
+    scrollbar-width: none;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  .nav-tabs::-webkit-scrollbar { display: none; }
+  .nav-tab {
+    flex-shrink: 0;
+    padding: 1rem 1.4rem;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--light-text);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -2px;
+    transition: color 0.2s, border-color 0.2s;
+    white-space: nowrap;
+    background: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    font-family: 'Poppins', sans-serif;
+  }
+  .nav-tab:hover { color: var(--green); }
+  .nav-tab.active {
+    color: var(--green);
+    border-bottom-color: var(--mint);
+    font-weight: 600;
+  }
+
+  /* ── MAIN ── */
+  .main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+
+  /* ── SECTIONS ── */
+  .section { display: none; }
+  .section.active { display: block; }
+
+  /* ── SHARED SECTION STYLES ── */
+  .section-eyebrow {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    color: var(--mint);
+    text-transform: uppercase;
+    margin-bottom: 0.6rem;
+  }
+  .section-title {
+    font-family: 'Lora', serif;
+    font-size: clamp(1.4rem, 3.5vw, 2rem);
+    font-weight: 600;
+    color: var(--green);
+    line-height: 1.25;
+    margin-bottom: 1.6rem;
+  }
+  .body-text p {
+    font-size: 0.97rem;
+    line-height: 1.82;
+    color: var(--text);
+    margin-bottom: 1.2rem;
+    max-width: 680px;
+  }
+  .body-text p:last-child { margin-bottom: 0; }
+
+  /* pull quote */
+  .pull-quote {
+    border-left: 4px solid var(--mint);
+    margin: 2rem 0;
+    padding: 1.2rem 1.5rem;
+    background: var(--white);
+    border-radius: 0 10px 10px 0;
+  }
+  .pull-quote p {
+    font-family: 'Lora', serif;
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--green);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* green feature block */
+  .feature-block {
+    background: var(--green);
+    border-radius: 12px;
+    padding: 2rem 2rem 1.8rem;
+    color: var(--white);
+    margin: 2.4rem 0;
+  }
+  .feature-block h3 {
+    font-family: 'Lora', serif;
+    font-size: 1.1rem;
+    color: var(--yellow);
+    margin-bottom: 1rem;
+  }
+  .feature-block p {
+    font-size: 0.9rem;
+    line-height: 1.75;
+    color: rgba(255,255,255,0.85);
+    margin-bottom: 0.8rem;
+  }
+  .feature-block p:last-child { margin-bottom: 0; }
+
+  /* mint feature block */
+  .mint-block {
+    background: var(--mint);
+    border-radius: 12px;
+    padding: 1.8rem 2rem;
+    margin: 2rem 0;
+  }
+  .mint-block p {
+    font-family: 'Lora', serif;
+    font-size: 1.05rem;
+    font-style: italic;
+    color: var(--green);
+    line-height: 1.65;
+    margin: 0;
+  }
+
+  /* pink accent block */
+  .pink-block {
+    background: #fdf0f5;
+    border: 1.5px solid var(--pink);
+    border-radius: 12px;
+    padding: 1.8rem 2rem;
+    margin: 2rem 0;
+  }
+  .pink-block p {
+    font-size: 0.95rem;
+    line-height: 1.75;
+    color: var(--text);
+    margin-bottom: 0.8rem;
+  }
+  .pink-block p:last-child { margin-bottom: 0; }
+
+  /* chapter divider */
+  .ch-divider {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 2.4rem 0;
+  }
+  .ch-divider-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+  .ch-divider-label {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    color: var(--light-text);
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  /* attribution */
+  .attribution {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-top: 2rem;
+  }
+  .attr-dot {
+    width: 36px;
+    height: 36px;
+    background: var(--mint);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Lora', serif;
+    font-weight: 600;
+    color: var(--green);
+    font-size: 0.95rem;
+    flex-shrink: 0;
+  }
+  .attr-name {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--green);
+  }
+  .attr-role {
+    font-size: 0.78rem;
+    color: var(--light-text);
+  }
+
+  /* pill row */
+  .pill-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1.4rem;
+  }
+  .pill {
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--green);
+    background: var(--mint);
+    border-radius: 20px;
+    padding: 0.35rem 0.9rem;
+    text-decoration: none;
+    transition: opacity 0.15s;
+  }
+  .pill:hover { opacity: 0.85; }
+  .pill-yellow {
+    background: var(--yellow);
+    color: var(--green);
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    background: var(--green);
+    padding: 1.5rem 2rem;
+    text-align: center;
+  }
+  .footer p {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.5);
+  }
+  .footer strong { color: var(--mint); }
+
+  @media (max-width: 600px) {
+    .main { padding: 2rem 1rem 4rem; }
+    .feature-block, .pink-block { padding: 1.4rem 1.2rem; }
+  }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <p class="logo-line">The Influence Lab &nbsp;·&nbsp; Kay Littlehales MInstSMM</p>
+  <h1>Modern Learning<br><em>In A Digital Age</em></h1>
+  <p class="header-sub">The book. The foreword. The philosophy behind it.</p>
+  <a href="https://stan.store/TheInfluenceLab/p/get-my-modern-l--d-in-a-digital-age" class="header-cta" target="_blank" rel="noopener">Get the book &rarr;</a>
+</header>
+
+<nav class="nav-tabs" role="tablist">
+  <button class="nav-tab active" onclick="showTab('story', this)" role="tab">Kay's Story</button>
+  <button class="nav-tab" onclick="showTab('foreword', this)" role="tab">The Foreword</button>
+  <button class="nav-tab" onclick="showTab('ecosystem', this)" role="tab">The Ecosystem</button>
+  <button class="nav-tab" onclick="showTab('cultural', this)" role="tab">The Sweetness of Cultural Rituals</button>
+</nav>
+
+<main class="main">
+
+  <!-- ── TAB 1: KAY'S STORY ── -->
+  <section class="section active" id="tab-story">
+    <p class="section-eyebrow">Who wrote this, and why</p>
+    <h2 class="section-title">Someone had to say it.</h2>
+
+    <div class="body-text">
+      <p>I began travelling at a very young age. In 1993, at twenty, I lived and worked in Ibiza. I lived with locals, ate their food and immersed myself in their way of life. Life was far more connected and interactive then. There were no phones in our pockets, just people, sunshine and conversation.</p>
+      <p>My job was selling excursions and nights at the top clubs on the island. On paper that sounds easy. Everyone is on holiday, everyone is happy, everyone wants a good time. In reality it was one of the most competitive places I have ever sold in. Every bar, every corner and every stretch of beach had someone selling the same nights, the same boat trips and the same promises.</p>
+    </div>
+
+    <div class="pull-quote">
+      <p>"If I sounded like everyone else, I was invisible. So I stopped selling the ticket and started selling the moment."</p>
+    </div>
+
+    <div class="body-text">
+      <p>I learnt to paint visual pictures: the sun dropping into the sea at San Antonio, the bass coming up through the floor as the doors opened, the boat anchored in a turquoise cove with nobody else around. When people could see it, they could feel it, and when they could feel it, the decision was already made.</p>
+      <p>Everything I later built into my sales methodology, PROSPER, has its roots on that island. Looking back, Ibiza taught me the first lesson of this book: people do not buy information. They buy what resonates with them.</p>
+      <p>At thirty-one I sold my house and moved to Thailand. Years later I lived on Koh Samui and Koh Phangan. It was there that I met my best friend, Viv, a former nurse turned teacher. She lived in the middle of the forest, close to the sea, and had the most amazing curly locs. If you think I am outspoken and direct, you should have met her. Sadly, Viv died of a heart attack a decade ago and I miss her every day. Part of her will live within me forever.</p>
+      <p>Then there was California. I lived and worked in San Diego, travelled across the Midwest as head of sales for the US, did a stint in Las Vegas, and found myself in Silicon Valley and Fort Lauderdale where I saw the inside of some of NASA's work. I still pinch myself.</p>
+    </div>
+
+    <div class="feature-block">
+      <h3>Of the ninety countries I have visited, my favourite place on earth is Colombia.</h3>
+      <p>I fell for it hook, line and sinker. It is the energy. I always say energy is our first language, and in Colombia you can sense it straight away: the sincerity, the hardship, the growth and the kindness.</p>
+      <p>I learnt Spanish in the north, in the indigenous regions, and spent time with the communities of the Sierra Nevada de Santa Marta. The air there is thick and green. It smells of wet earth, wood smoke, ripe mango and coffee drying in the sun. Nothing lives alone there. Every plant, insect and root is part of something bigger.</p>
+      <p>When your material objects are taken away and you step outside the social structure we know, you see why we are here, and why we make so many mistakes while we live inside a structure built on such deep conditioning.</p>
+    </div>
+
+    <div class="body-text">
+      <p>Most of what I learnt in those places, I did not learn consciously. Nobody sat me down and taught me how to build trust with a stranger, how to slow down, or how to read a room in a language I barely spoke. I absorbed it. The brain learns most powerfully when we are stretched: outside our comfort zone, but not so far that we shut down. That is the edge of the Window of Tolerance, and it is where real growth happens.</p>
+      <p>Being stripped back to basics also brought me face to face with my shadow, in Carl Jung's sense. Without status, routine or the usual props, there is nowhere to hide. That is uncomfortable, and it is also where honesty begins. I believe that leaders and L&D professionals who have done some of their own shadow work hold far safer, braver rooms than those who have not.</p>
+      <p>This is why my methods are built on resonance and relatability. People do not change because they were told to. They change when they recognise themselves in what they are shown. A slide about a made up company rarely moves anyone. A scenario that sounds like their own Monday morning, their own difficult conversation, their own team, stops them in their tracks, because the brain pays attention to what feels personal and real.</p>
+    </div>
+
+    <div class="mint-block">
+      <p>"Living inside other cultures taught me to listen for what is unspoken. That is where the real learning is, and it is where this book lives too."</p>
+    </div>
+
+    <div class="attribution">
+      <div class="attr-dot">K</div>
+      <div>
+        <div class="attr-name">Kay Littlehales MInstSMM</div>
+        <div class="attr-role">Founder, The Influence Lab &nbsp;·&nbsp; Author, Modern Learning In A Digital Age</div>
+      </div>
+    </div>
+
+    <div class="pill-row">
+      <a href="https://stan.store/TheInfluenceLab/p/get-my-modern-l--d-in-a-digital-age" class="pill pill-yellow" target="_blank" rel="noopener">Get the book</a>
+      <a href="https://the-influencelab.github.io/Modern-L-D-Diagnostic-2026/" class="pill" target="_blank" rel="noopener">Take the Diagnostic</a>
+      <a href="https://www.linkedin.com/in/kay-littlehales-minstsmm-2a434117/" class="pill" target="_blank" rel="noopener">Connect on LinkedIn</a>
+    </div>
+  </section>
+
+  <!-- ── TAB 2: FOREWORD ── -->
+  <section class="section" id="tab-foreword">
+    <p class="section-eyebrow">Modern Learning In A Digital Age</p>
+    <h2 class="section-title">Foreword</h2>
+
+    <div class="body-text">
+      <p>When Kay Littlehales asked me to write the foreword for <em>Modern L&D in a Digital Age</em>, I was honoured. I also found myself searching, instinctively, for the courage to do it justice. That felt fitting. Courage is what this book asks of every one of us.</p>
+      <p>What is the role of L&D today? Scroll through LinkedIn and you will find a thousand answers. The people who hold the budgets are asking a blunter question: why invest in skilling people who may leave within eighteen months? Much of what can be automated is being automated. Content is everywhere, and much of it is free. Our profession is facing an identity crisis, and many of the people who decide its future are increasingly questioning its value.</p>
+      <p>Kay does not answer that crisis with another course or platform. She asks us to change how we understand the role of L&D.</p>
+    </div>
+
+    <div class="pull-quote">
+      <p>"For too long, much of L&D has operated as an order-taking function. Kay asks us to become architects instead."</p>
+    </div>
+
+    <div class="body-text">
+      <p>An architect does not build from the first sketch on a napkin. They walk the land, study how people will live in the space, and design with the people who will use it. For L&D, that means diagnosing before delivering, finding the real problem on the ground, designing with the people closest to it, and demonstrating what has changed.</p>
+      <p>On paper, the shift looks simple. In practice, it takes courage. The courage to tell a CEO that this is not the programme the business needs. To say that this is a problem training cannot fix. To insist that people need an environment in which they can practise what they learn. These are difficult conversations, and careers have been lost over them.</p>
+      <p>Early in my career, as a vendor to a large bank in India, I watched an L&D head have those conversations every day. She fought her CEO and every stakeholder in between for every rupee and every minute, and she could always explain why. Every programme we delivered was evaluated, and so was our work. She was an architect long before the word was fashionable. Only now do I understand the courage it took.</p>
+      <p>That experience shaped my understanding of what the profession could be. This book carries the same conviction. It is a work of discernment, drawn from Kay's years across boardrooms, training rooms and shop floors. She looks at learning from thirty thousand feet, but also from the middle of the room where decisions are made. You will recognise your own organisation in its stories.</p>
+    </div>
+
+    <div class="feature-block">
+      <h3>The heart of the book</h3>
+      <p>Kay takes a word we usually treat as personal, courage, and brings it into the way we think about organisations and systems. Her Drift to Drive Framework is both a diagnostic and a route towards a different way of working. It shows you honestly where you stand and what needs to change. It also shows that the courage L&D needs is the same courage missing in the tech lead who avoids a difficult conversation, or the leader unsure who to become after a restructure.</p>
+    </div>
+
+    <div class="body-text">
+      <p>So what will you take from it? A clearer picture of where you and your team really are. The language to talk about learning in terms a boardroom respects. Practical tools you can use the following week: questions that turn a training request into a proper diagnosis, approaches to evaluation that go beyond the feedback form, and scenarios grounded in the realities of working life.</p>
+      <p>It is also a book for this moment. Kay looks squarely at what AI is doing to the way we learn and think, and makes a point every L&D team should hear: a function that only takes orders will not be replaced by AI. It will be quietly hollowed out by it. What remains is the work only people can do, and this book shows us how to do more of it.</p>
+      <p>The future she describes is not only about moving forward. Some of it is about recovering what we once understood about learning. Kay and I began this conversation on a LinkedIn Live, asking what AI has taken from us and what it has given us. My own chapter at the end of the book returns to an older understanding of learning: that we practise before we fully understand, and learn alongside people who have walked the path. In a world of instant answers, those practices are easy to overlook.</p>
+    </div>
+
+    <div class="pink-block">
+      <p>Courage also means questioning ourselves. Learning is never culturally neutral. In India, teachers and books are held in deep respect. If we step on a book by mistake, we touch it and ask its pardon. And once we own a book, we are more likely to give it away than sell it. Culture shifts between generations, too. Those of us who design learning often bring twenty or thirty years of experience, along with assumptions about how others learn.</p>
+      <p>As organisations span geographies and generations, L&D needs to ask a difficult question: whose way of learning have we assumed?</p>
+    </div>
+
+    <div class="body-text">
+      <p>The systems we built once worked. They no longer do. The future of L&D will depend on a few courageous voices willing to fight for the many. This book is one of them. Read it with a pen in hand, and then take one idea into your organisation and practise it.</p>
+      <p>As Kay writes in her closing pages, there is more to come.</p>
+    </div>
+
+    <div class="attribution">
+      <div class="attr-dot">KC</div>
+      <div>
+        <div class="attr-name">Keerthika Chellappa</div>
+        <div class="attr-role">Co-Founder, Mindstein Academy, Chennai</div>
+      </div>
+    </div>
+
+    <div class="pill-row">
+      <a href="https://stan.store/TheInfluenceLab/p/get-my-modern-l--d-in-a-digital-age" class="pill pill-yellow" target="_blank" rel="noopener">Get the book</a>
+      <a href="https://the-influencelab.github.io/Modern-L-D-Diagnostic-2026/" class="pill" target="_blank" rel="noopener">Take the Drift to Drive Diagnostic</a>
+    </div>
+  </section>
+
+  <!-- ── TAB 3: ECOSYSTEM ── -->
+  <section class="section" id="tab-ecosystem">
+    <p class="section-eyebrow">Chapter 2</p>
+    <h2 class="section-title">The Ecosystem of Learning</h2>
+
+    <div class="body-text">
+      <p>Before we talk about learning, I want to talk about people. Why we are here, what we are reaching for, and what we miss along the way.</p>
+      <p>For as long as humans have existed, we have learnt together. We learnt by watching, copying, failing and trying again, around fires, in fields, at the elbow of someone who knew more than us. Learning was never an event. It was how we survived, and it always happened in community.</p>
+      <p>Traditional training was built for a different world. Someone asks for a course, and we deliver a course. A manager says their team needs resilience training, so we book a resilience workshop. Sales are down, so we run a sales refresher. It is order taking: a request comes in, a workshop goes out, a box is ticked. It is tidy, it is measurable on a spreadsheet, and it very rarely changes anything, because nobody stopped to ask what was really going on underneath.</p>
+    </div>
+
+    <div class="pull-quote">
+      <p>"The request is almost never the root cause. We are beyond order takers now. That is why I designed the Drift to Drive model."</p>
+    </div>
+
+    <div class="body-text">
+      <p>Moving towards Drive means working as an architect, not an order taker. An architect does not build the first thing a client sketches on a napkin. They walk the land, understand how people will live in the space, and design with the people who will use it. In learning, that means designing as a collective: with leaders, managers, the frontline and the quiet voices in the network who know exactly where things get stuck.</p>
+    </div>
+
+    <div class="ch-divider">
+      <div class="ch-divider-line"></div>
+      <div class="ch-divider-label">Your place in the forest</div>
+      <div class="ch-divider-line"></div>
+    </div>
+
+    <div class="body-text">
+      <p>As you read this chapter, I want you to visualise a forest. At the top is the canopy, the tallest trees reaching for the light. They shape the climate for everything below them. Below them are the trees and the understorey, the trunks, the young saplings and the shrubs, each finding their own space to grow. Under the ground are the roots, anchoring everything, drawing up water and nutrients, doing most of the work out of sight.</p>
+      <p>And woven through all of it is the mycorrhizal network, the fungi that wrap around the roots and connect tree to tree underground. Researchers describe how the oldest trees, sometimes called mother trees, act as hubs in this network, linked to many others and helping the young ones through hard seasons.</p>
+    </div>
+
+    <div class="mint-block">
+      <p>"Now ask yourself where you are in this forest. Are you in the canopy, setting the conditions for others? A young sapling, still reaching for light? Or are you part of the network, the person who connects people, passes things on and makes sure nobody grows alone? Wherever you put yourself, you are the forest."</p>
+    </div>
+
+    <div class="feature-block">
+      <h3>The Mycorrhizal Network in organisations</h3>
+      <p>If we look at organisations through a fresh lens, L&D isn't too dissimilar to a forest. The canopy is the CEO, the highest point, catching the most light. The tree is L&D itself, standing between what's decided above and what's actually growing below. And the roots are the collective, every department, tangled together underground in the same mycorrhizal network.</p>
+      <p>A forest survives because every part feeds the others. If we were to take one part away, stop the feeding in either direction, the whole thing starves, slowly, from wherever the break happened.</p>
+      <p>In a real forest, the canopy doesn't feed the roots. The roots feed everything, including, eventually, the canopy. Nutrients, water, warning signals, all of it moves upward from underground before anything above ground can grow at all.</p>
+    </div>
+
+    <div class="body-text">
+      <p>When organisations look for learning needs, they almost always look up, at the canopy. But in a forest, the most important work happens where you cannot see it. The training that is needed most is often within the network: in the handover between two teams that do not trust each other, in the manager who never learnt how to have an honest conversation, in the knowledge that lives in one person's head and nowhere else.</p>
+      <p>None of that shows up as a training request. It only shows up when we stop taking orders and start observing: walking the floor, listening to how people actually talk to each other, noticing where things get stuck and where they flow.</p>
+    </div>
+
+    <div class="pull-quote">
+      <p>"The canopy gives you the view. The ground gives you the truth. Good leaders, and good learning, need both."</p>
+    </div>
+
+    <div class="pill-row">
+      <a href="https://stan.store/TheInfluenceLab/p/get-my-modern-l--d-in-a-digital-age" class="pill pill-yellow" target="_blank" rel="noopener">Read the full chapter</a>
+      <a href="https://the-influencelab.github.io/Modern-L-D-Diagnostic-2026/" class="pill" target="_blank" rel="noopener">Take the Diagnostic</a>
+    </div>
+  </section>
+
+  <!-- ── TAB 4: CULTURAL RITUALS ── -->
+  <section class="section" id="tab-cultural">
+    <p class="section-eyebrow">An Influence Lab story</p>
+    <h2 class="section-title">The Sweetness of Cultural Rituals</h2>
+
+    <div class="body-text">
+      <p>Some relationships form because of professional proximity. This one formed because of curiosity, candour, and a mutual refusal to make things smaller than they are.</p>
+      <p>Kay Littlehales and Keerthika Chellappa met on LinkedIn, the way many conversations now begin. What was different was what happened after the first exchange. No transactional follow-up, no networking niceties. Just two people who found in each other something genuinely rare: the willingness to think out loud, in public, without a performance attached to it.</p>
+    </div>
+
+    <div class="pink-block">
+      <p>What fascinated Kay about Keerthika was her description of her rituals. The significance of yoga, of holistic practice, of the choices she has made about how to live. There is no material benefit to their social exchanges. It is purely, genuinely altruistic.</p>
+      <p>They see things differently, because they come from different cultural backgrounds. And that is where Kay gains the most insight. Dualities. Dialectical thinking. Different ways of approaching things. Keerthika brings practical solutions through creative logic. Like Kay, she is an intentional thinker and writer. Her writing is elegant, visual and it challenges you.</p>
+    </div>
+
+    <div class="body-text">
+      <p>Kay leaves their calls feeling calm and empowered. The hope is that Keerthika does too.</p>
+      <p>It has never been more important to have chosen women alongside us. Not ornamental support, but the kind of presence that steadies you while also stretching you. As both women navigate the work of building new foundations with five generations in the workplace, that combination matters more than most things on a professional profile.</p>
+    </div>
+
+    <div class="feature-block">
+      <h3>What one culture teaches another</h3>
+      <p>In India, teachers and books are held in deep respect. If you step on a book by mistake, you touch it and ask its pardon. And once you own a book, you are more likely to give it away than sell it. That is Keerthika's world, and it is a lens Kay has absorbed and carried into the way she thinks about learning as something that belongs to a community, not a curriculum.</p>
+      <p>Kay's world came from moving, immersing, and shedding the familiar. Colombia taught her that energy is a first language. Thailand showed her what it looks like when a community actually lives as one. California gave her commercial sharpness. Vietnam gave her stillness. Each culture left something that ended up in this book, whether the reader knows it or not.</p>
+    </div>
+
+    <div class="pull-quote">
+      <p>"We see things differently, because we come from different cultural backgrounds. And that is exactly where the insight lives."</p>
+    </div>
+
+    <div class="body-text">
+      <p>Keerthika co-founded Mindstein Academy in Chennai. She is sharp, grounded, and has the kind of thinking that does not resolve quickly into easy conclusions. That is a quality Kay recognises, because it is also how she works. Neither of them is interested in the neat answer. Both of them are interested in the honest one.</p>
+      <p>Keerthika wrote the foreword for <em>Modern Learning In A Digital Age</em>. That was not a courtesy. It was a statement of alignment. When this book goes to hardback and Kindle in January, that foreword will be the first thing a reader encounters. That is a significant thing to trust to anyone.</p>
+    </div>
+
+    <div class="mint-block">
+      <p>"Kay has been sponsored to do her second book launch, Beyond Coaching: Conscious Communication, in New York. By hook or by crook, Keerthika will be there."</p>
+    </div>
+
+    <div class="body-text">
+      <p>That is what chosen relationships look like in practice. Not just endorsement, not just admiration. Presence. The kind that shows up across time zones, across different professional cultures, and across the messy, non-linear reality of building something that matters.</p>
+      <p>The sweetness of cultural rituals is not in the ceremony itself. It is in what the ceremony points toward: a way of being in the world that does not rush past the things worth slowing down for. Kay learned that in Colombia. Keerthika has lived it in Chennai. And somehow, through a LinkedIn conversation that refused to stay polite, they found it in each other.</p>
+    </div>
+
+    <div class="attribution" style="margin-top: 2rem;">
+      <div class="attr-dot">K</div>
+      <div>
+        <div class="attr-name">Kay Littlehales</div>
+        <div class="attr-role">Founder, The Influence Lab</div>
+      </div>
+    </div>
+    <div class="attribution" style="margin-top: 1rem;">
+      <div class="attr-dot">KC</div>
+      <div>
+        <div class="attr-name">Keerthika Chellappa</div>
+        <div class="attr-role">Co-Founder, Mindstein Academy, Chennai</div>
+      </div>
+    </div>
+
+    <div class="pill-row">
+      <a href="https://stan.store/TheInfluenceLab/p/get-my-modern-l--d-in-a-digital-age" class="pill pill-yellow" target="_blank" rel="noopener">Get the book</a>
+      <a href="https://the-influencelab.github.io/Modern-L-D-Diagnostic-2026/" class="pill" target="_blank" rel="noopener">Take the Drift to Drive Diagnostic</a>
+      <a href="https://the-influencelab.github.io/Influence-Lab-Website/" class="pill" target="_blank" rel="noopener">The Influence Lab</a>
+      <a href="https://www.linkedin.com/in/kay-littlehales-minstsmm-2a434117/" class="pill" target="_blank" rel="noopener">Connect with Kay</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <p><strong>The Influence Lab</strong> &nbsp;·&nbsp; Kay Littlehales MInstSMM &nbsp;·&nbsp; InfluenceL8b@outlook.com</p>
+</footer>
+
+<script>
+  function showTab(id, btn) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('tab-' + id).classList.add('active');
+    btn.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+
+</body>
+</html>
